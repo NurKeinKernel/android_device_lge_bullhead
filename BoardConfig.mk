@@ -31,7 +31,7 @@ TARGET_NO_BOOTLOADER := true
 # Inline kernel
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_SOURCE := kernel/lge/bullhead
-TARGET_KERNEL_CONFIG := lineageos_bullhead_defconfig
+TARGET_KERNEL_CONFIG := bullhead_defconfig
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
@@ -113,7 +113,7 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
-  ifneq ($(AICP_BUILDTYPE),UNOFFICIAL)
+  ifneq ($(TARGET_BUILD_VARIANT),userdebug)
     ifeq ($(WITH_DEXPREOPT),)
       WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
       WITH_DEXPREOPT := true
@@ -134,7 +134,8 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Build a separate vendor.img
-TARGET_COPY_OUT_VENDOR := system
+TARGET_COPY_OUT_VENDOR := vendor
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 
 TARGET_RECOVERY_FSTAB = device/lge/bullhead/fstab.bullhead
 
@@ -142,6 +143,7 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/lge/bullhead
 
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
+#BOARD_VNDK_VERSION=current
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
