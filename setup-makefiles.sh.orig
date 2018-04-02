@@ -51,5 +51,10 @@ write_headers
 # The standard blobs
 write_makefiles "$MY_DIR"/du-proprietary-blobs.txt
 
+<<<<<<< HEAD
+write_makefiles "$MY_DIR"/du-proprietary-blobs-vendorimg.txt
+
+=======
+>>>>>>> d206abd29631f0a17ca1dc64fddb4a77a71366d5
 # We are done!
 write_footers
